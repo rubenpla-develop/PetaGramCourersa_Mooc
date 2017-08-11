@@ -14,7 +14,8 @@
         android:layout_width="350dp"
         android:layout_height="380dp"
         android:layout_marginBottom="@dimen/activity_vertical_margin"
-        card_view:cardCornerRadius="@dimen/corner_radius_cardview">
+        card_view:cardCornerRadius="@dimen/corner_radius_cardview"
+        android:layout_gravity="center">
 
         <LinearLayout
             android:layout_width="wrap_content"

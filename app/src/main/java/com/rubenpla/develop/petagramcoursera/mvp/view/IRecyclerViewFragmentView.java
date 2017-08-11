@@ -10,5 +10,4 @@ import java.util.ArrayList;
 public interface IRecyclerViewFragmentView {
     void showGridList(ArrayList<PetModel> list);
     void showPetPhoto(Context context, View view, int position);
-    void showUserProfile();
 }

@@ -2,18 +2,17 @@ package com.rubenpla.develop.petagramcoursera.mvp.model;
 
 import java.util.ArrayList;
 
-/**
- * Created by anahisalgado on 25/05/16.
- */
 public class PetModelResponse {
 
-    ArrayList<PetModel> contactos;
+    public PetModelResponse() {}
+
+    ArrayList<PetModel> pets;
 
     public ArrayList<PetModel> getPetModels() {
-        return contactos;
+        return pets;
     }
 
     public void setPetModels(ArrayList<PetModel> contactos) {
-        this.contactos = contactos;
+        this.pets = contactos;
     }
 }

@@ -14,7 +14,9 @@ public final class ConstantesRestApi {
             + KEY_ACCESS_TOKEN + ACCESS_TOKEN;
     //https://api.instagram.com/v1/users/self/media/recent/?access_token=ACCESS-TOKEN
 
-    public static final String KEY_GET_SELF_USER_INFO = "users/self/info"; //TODO not real endpoint
-     public static final String URL_GET_SELF_USER_INFO = KEY_GET_SELF_USER_INFO
-             + KEY_ACCESS_TOKEN + ACCESS_TOKEN;
+    public static final String KEY_GET_SELF_USER = "users/self/";
+    public static final String URL_GET_USER_SELF = KEY_GET_SELF_USER + KEY_ACCESS_TOKEN +
+            ACCESS_TOKEN;
+    //https://api.instagram.com/v1/users/self/?access_token=ACCESS-TOKEN
+
 }

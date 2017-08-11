@@ -38,23 +38,17 @@ public class RecyclerViewFragment extends Fragment implements IRecyclerViewFragm
 
         //init components for view
         presenter = new RecyclerViewFragmentPresenter(this, getContext());
-        layoutManager = new GridLayoutManager(getContext(), 3);
+        layoutManager = new GridLayoutManager(getContext(), 2);
         petRecyclerView.setLayoutManager(layoutManager);
 
         //presenter's first call
         try {
             presenter.showPetRecentMediaList();
-        } catch (NoSuchMethodException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (java.lang.InstantiationException e) {
-            e.printStackTrace();
-        } catch (InvocationTargetException e) {
+        } catch (NoSuchMethodException | ClassNotFoundException | IllegalAccessException |
+                java.lang.InstantiationException | InvocationTargetException e) {
             e.printStackTrace();
         }
+
         return view;
     }
 
@@ -67,11 +61,6 @@ public class RecyclerViewFragment extends Fragment implements IRecyclerViewFragm
     @Override
     public void showPetPhoto(Context context,View view, int position) {
        //TODO
-    }
-
-    @Override
-    public void showUserProfile() {
-        //TODO
     }
 
 }
