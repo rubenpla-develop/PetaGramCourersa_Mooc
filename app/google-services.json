@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "532746064777",
+    "firebase_url": "https://petagram-5359c.firebaseio.com",
+    "project_id": "petagram-5359c",
+    "storage_bucket": "petagram-5359c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:532746064777:android:4870022eab513355",
+        "android_client_info": {
+          "package_name": "com.rubenpla.develop.petagramcoursera"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "532746064777-et2jh4q6d1vnqi03haelbck51ea01is5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCI0oY9wVEL52x1zS8wpv0zTEWyD7UJIRY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
