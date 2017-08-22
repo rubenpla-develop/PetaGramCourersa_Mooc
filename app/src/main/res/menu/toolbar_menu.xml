@@ -3,19 +3,22 @@
 
     <item
         android:id="@+id/menu_contact"
-
         app:showAsAction="never"
-        android:title="Contact">
+        android:title="@string/menu_contact">
     </item>
     <item
         android:id="@+id/menu_about"
-
         app:showAsAction="never"
-        android:title="About">
+        android:title="@string/menu_about">
     </item>
     <item
         android:id="@+id/menu_account"
         app:showAsAction="never"
-        android:title="Account Settings">
+        android:title="@string/menu_account_settings">
+    </item>
+    <item
+        android:id="@+id/menu_notifications"
+        app:showAsAction="never"
+        android:title="@string/menu_notifications">
     </item>
 </menu>
