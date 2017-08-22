@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.rubenpla.develop.petagramcoursera.api.RetrofitController;
+import com.rubenpla.develop.petagramcoursera.api.constants.ConstantesRestApi;
 import com.rubenpla.develop.petagramcoursera.api.deserializer.RecentMediaDeserializer;
 import com.rubenpla.develop.petagramcoursera.api.endpoints.RetrofitPetagramApi;
 import com.rubenpla.develop.petagramcoursera.mvp.model.PetModel;
@@ -30,7 +31,7 @@ public class RecyclerViewFragmentPresenter implements IRecyclerViewFragmentPrese
         this.view = view;
         this.context = context;
 
-        controller = new RetrofitController();
+        controller = new RetrofitController(ConstantesRestApi.INSTA_ROOT_URL);
     }
 
 

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.util.Log;
 
 import com.rubenpla.develop.petagramcoursera.api.RetrofitController;
+import com.rubenpla.develop.petagramcoursera.api.constants.ConstantesRestApi;
 import com.rubenpla.develop.petagramcoursera.api.deserializer.ProfileInfoDeserializer;
 import com.rubenpla.develop.petagramcoursera.api.endpoints.RetrofitPetagramApi;
 import com.rubenpla.develop.petagramcoursera.mvp.model.UserProfileModelResponse;
@@ -28,7 +29,7 @@ public class ProfileFragmentPresenter implements IProfileFragmentPresenter {
         this.view = view;
         this.context = context;
 
-        controller = new RetrofitController();
+        controller = new RetrofitController(ConstantesRestApi.INSTA_ROOT_URL);
     }
 
     @Override
