@@ -2,9 +2,10 @@ package com.rubenpla.develop.petagramcoursera.api.constants;
 
 public final class ConstantesRestApi {
 
+    //INSTAGRAM
     //https://api.instagram.com/v1/
     public static final String VERSION = "/v1/";
-    public static final String ROOT_URL = "https://api.instagram.com" + VERSION;
+    public static final String INSTA_ROOT_URL = "https://api.instagram.com" + VERSION;
     public static final String ACCESS_TOKEN = "5823926203.cf5e43d.3a0cced541a24d568c3cdf164fcb2e2f";
     public static final String KEY_ACCESS_TOKEN = "?access_token=";
 
@@ -19,4 +20,8 @@ public final class ConstantesRestApi {
             ACCESS_TOKEN;
     //https://api.instagram.com/v1/users/self/?access_token=ACCESS-TOKEN
 
+
+    //FIREBASE/API STUFF
+    public static final String API_ROOT_URL = "https://guarded-coast-64549.herokuapp.com/";
+    public static final String KEY_API_POST_REGISTER_USER = "registrar-usuario/";
 }
