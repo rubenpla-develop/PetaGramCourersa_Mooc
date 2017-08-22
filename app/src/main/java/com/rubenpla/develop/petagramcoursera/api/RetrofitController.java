@@ -1,5 +1,8 @@
 package com.rubenpla.develop.petagramcoursera.api;
 
+import android.support.annotation.NonNull;
+
+import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.rubenpla.develop.petagramcoursera.api.constants.ConstantesRestApi;
 import com.rubenpla.develop.petagramcoursera.api.endpoints.RetrofitPetagramApi;
@@ -14,20 +17,14 @@ public class RetrofitController {
 
     private RetrofitPetagramApi retrofitPetagramApi;
     private Call<? extends Object> request;
+    private String rootUrl;
 
-    /*public RetrofitPetagramApi initController() {
+    public RetrofitController (@NonNull String rootUrl) {
+        this.rootUrl = rootUrl;
 
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(ConstantesRestApi.ROOT_URL)
-                .addConverterFactory(GsonConverterFactory.create(makeDefaultGson()))
-                .build();
-
-        retrofitPetagramApi = retrofit.create(RetrofitPetagramApi.class);
-
-        return retrofitPetagramApi;
     }
 
-    public Gson makeDefaultGson() {
+    /*public Gson makeDefaultGson() {
         Gson gson = new GsonBuilder()
                 .setLenient()
                 .create();
@@ -43,17 +40,19 @@ public class RetrofitController {
      * tenemos un metodo universal para aplicar
      * cuantos serializadores tenga la aplicación.
      */
-    public RetrofitPetagramApi setDeserializer(String serializerClass, String responseClass) throws ClassNotFoundException,
+    public RetrofitPetagramApi setDeserializer(@NonNull String serializerClass,@NonNull String responseClass)
+            throws ClassNotFoundException,
             NoSuchMethodException, IllegalAccessException, InvocationTargetException,
             InstantiationException {
 
         Class serializer = Class.forName(serializerClass);
         Class response = Class.forName(responseClass);
-        GsonBuilder builder = new GsonBuilder().registerTypeHierarchyAdapter( response.getConstructor().getDeclaringClass(),
+        GsonBuilder builder = new GsonBuilder()
+                .registerTypeHierarchyAdapter(response.getConstructor().getDeclaringClass(),
                 serializer.getConstructor().newInstance());
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(ConstantesRestApi.ROOT_URL)
+                .baseUrl(rootUrl)
                 .addConverterFactory(GsonConverterFactory.create(builder.create()))
                 .build();
 
