@@ -20,6 +20,15 @@ public final class ConstantesRestApi {
             ACCESS_TOKEN;
     //https://api.instagram.com/v1/users/self/?access_token=ACCESS-TOKEN
 
+    //https://api.instagram.com/v1/users/self/followed-by?access_token=ACCESS-TOKEN
+    public static final String KEY_GET_FOLLOWED_BY = "users/self/followed-by/";
+    public static final String URL_GET_FOLLOWED_BY = KEY_GET_FOLLOWED_BY + KEY_ACCESS_TOKEN +
+            ACCESS_TOKEN;
+
+    //https://api.instagram.com/v1/users/{user-id}/media/recent/?access_token=access_token
+    public static final String KEY_GET_RECENT_MEDIA_BY_USER_ID = "users/{user}/media/recent/";
+    public static final String URL_GET_RECENT_MEDIA_BY_USER_ID = KEY_GET_RECENT_MEDIA_BY_USER_ID
+            + KEY_ACCESS_TOKEN + ACCESS_TOKEN;
 
     //FIREBASE/API STUFF
     public static final String API_ROOT_URL = "https://guarded-coast-64549.herokuapp.com/";
