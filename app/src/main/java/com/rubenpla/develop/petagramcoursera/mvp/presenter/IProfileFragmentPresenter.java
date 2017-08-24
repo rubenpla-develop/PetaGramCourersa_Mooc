@@ -5,5 +5,10 @@ import android.view.View;
 import java.lang.reflect.InvocationTargetException;
 
 public interface IProfileFragmentPresenter {
-    void showProfileInfo() throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException;
+
+    void showProfileInfo() throws ClassNotFoundException, NoSuchMethodException,
+            InvocationTargetException, InstantiationException, IllegalAccessException;
+
+    void showPetRecentMediaList() throws NoSuchMethodException, ClassNotFoundException,
+            IllegalAccessException, InstantiationException, InvocationTargetException;
 }

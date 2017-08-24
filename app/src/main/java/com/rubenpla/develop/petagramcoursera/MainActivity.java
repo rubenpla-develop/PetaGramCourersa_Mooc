@@ -12,21 +12,25 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.rubenpla.develop.petagramcoursera.adapter.PageAdapter;
+import com.rubenpla.develop.petagramcoursera.mvp.presenter.MainActivityPresenter;
+import com.rubenpla.develop.petagramcoursera.mvp.view.MainActivityView;
 import com.rubenpla.develop.petagramcoursera.view.ProfileFragment;
 import com.rubenpla.develop.petagramcoursera.view.RecyclerViewFragment;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements MainActivityView {
 
     private static final String KEY_EXTRA_NAME = "name";
 
     @BindView(R.id.toolbar) Toolbar toolbar;
     @BindView(R.id.tabLayout) TabLayout tabLayout;
     @BindView(R.id.viewPager) ViewPager viewPager;
+    private MainActivityPresenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +43,8 @@ public class MainActivity extends AppCompatActivity {
         if (toolbar != null){
             setSupportActionBar(toolbar);
         }
+
+        presenter = new MainActivityPresenter();
     }
 
     @Override
@@ -61,8 +67,23 @@ public class MainActivity extends AppCompatActivity {
             case R.id.menu_account:
                 Toast.makeText(this, "CLICK!!", Toast.LENGTH_SHORT).show();
                 break;
+            case R.id.menu_notifications :
+                try {
+                    presenter.registerUser();
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                } catch (NoSuchMethodException e) {
+                    e.printStackTrace();
+                } catch (InvocationTargetException e) {
+                    e.printStackTrace();
+                } catch (InstantiationException e) {
+                    e.printStackTrace();
+                } catch (IllegalAccessException e) {
+                    e.printStackTrace();
+                }
 
             default:
+
                 break;
         }
 
@@ -86,5 +107,15 @@ public class MainActivity extends AppCompatActivity {
 
         tabLayout.getTabAt(0).setIcon(R.drawable.ic_contacts);
         tabLayout.getTabAt(1).setIcon(R.drawable.ic_action_name);
+    }
+
+    @Override
+    public void showUserProfile() {
+
+    }
+
+    @Override
+    public void registerUser() {
+
     }
 }

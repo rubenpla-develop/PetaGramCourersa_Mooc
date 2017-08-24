@@ -1,6 +1,5 @@
 package com.rubenpla.develop.petagramcoursera.view;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -9,7 +8,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bartoszlipinski.recyclerviewheader2.RecyclerViewHeader;
@@ -19,7 +17,7 @@ import com.rubenpla.develop.petagramcoursera.mvp.model.PetModel;
 import com.rubenpla.develop.petagramcoursera.mvp.presenter.ProfileFragmentPresenter;
 import com.rubenpla.develop.petagramcoursera.mvp.presenter.RecyclerViewFragmentPresenter;
 import com.rubenpla.develop.petagramcoursera.mvp.view.IProfileFragmentView;
-import com.rubenpla.develop.petagramcoursera.mvp.view.IRecyclerViewFragmentView;
+import com.rubenpla.develop.petagramcoursera.view.custom.RoundedImageView;
 import com.squareup.picasso.Picasso;
 
 import java.lang.reflect.InvocationTargetException;
@@ -28,16 +26,14 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class ProfileFragment extends Fragment implements IRecyclerViewFragmentView,
-        IProfileFragmentView {
+public class ProfileFragment extends Fragment implements IProfileFragmentView {
 
     @BindView(R.id.recyclerView) RecyclerView petRecyclerView;
     @BindView(R.id.rv_header) RecyclerViewHeader rvHeader;
     @BindView(R.id.user_full_name) TextView tvUserName;
-    @BindView(R.id.user_image) ImageView ivProfilePicture;
+    @BindView(R.id.user_image) RoundedImageView ivProfilePicture;
     private GridLayoutManager layoutManager;
     private PetGridAdapter adapter;
-    private RecyclerViewFragmentPresenter recyclerViewFragmentPresenter;
     private ProfileFragmentPresenter profileFragmentPresenter;
 
     @Nullable
@@ -48,8 +44,7 @@ public class ProfileFragment extends Fragment implements IRecyclerViewFragmentVi
         ButterKnife.bind(this, view);
 
         //init Presenters
-        recyclerViewFragmentPresenter = new RecyclerViewFragmentPresenter(this, getContext());
-        profileFragmentPresenter = new ProfileFragmentPresenter(this, getContext());
+        profileFragmentPresenter = new ProfileFragmentPresenter(this);
 
         //init components for view
         layoutManager = new GridLayoutManager(getContext(), 2);
@@ -58,26 +53,14 @@ public class ProfileFragment extends Fragment implements IRecyclerViewFragmentVi
 
         //recyclerViewFragmentPresenter's first call
         try {
-
-            recyclerViewFragmentPresenter.showPetRecentMediaList();
             profileFragmentPresenter.showProfileInfo();
+            profileFragmentPresenter.showPetRecentMediaList();
         } catch (NoSuchMethodException | ClassNotFoundException | IllegalAccessException |
                 java.lang.InstantiationException | InvocationTargetException e) {
             e.printStackTrace();
         }
 
         return view;
-    }
-
-    @Override
-    public void showGridList(ArrayList<PetModel> list) {
-        adapter = new PetGridAdapter(getContext(), list);
-        petRecyclerView.setAdapter(adapter);
-    }
-
-    @Override
-    public void showPetPhoto(Context context, View view, int position) {
-
     }
 
     @Override
@@ -92,5 +75,11 @@ public class ProfileFragment extends Fragment implements IRecyclerViewFragmentVi
                 .placeholder(R.drawable.ic_contacts)
                 .error(R.drawable.shock_rave_icon)
                 .into(ivProfilePicture);
+    }
+
+    @Override
+    public void showGridList(ArrayList<PetModel> list) {
+        adapter = new PetGridAdapter(getContext(), list);
+        petRecyclerView.setAdapter(adapter);
     }
 }

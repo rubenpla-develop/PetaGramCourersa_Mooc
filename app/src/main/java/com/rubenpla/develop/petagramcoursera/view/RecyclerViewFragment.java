@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 
 import com.rubenpla.develop.petagramcoursera.R;
 import com.rubenpla.develop.petagramcoursera.adapter.PetGridAdapter;
+import com.rubenpla.develop.petagramcoursera.mvp.model.FollowedByUser;
 import com.rubenpla.develop.petagramcoursera.mvp.model.PetModel;
 import com.rubenpla.develop.petagramcoursera.mvp.presenter.RecyclerViewFragmentPresenter;
 import com.rubenpla.develop.petagramcoursera.mvp.view.IRecyclerViewFragmentView;
@@ -43,7 +44,7 @@ public class RecyclerViewFragment extends Fragment implements IRecyclerViewFragm
 
         //presenter's first call
         try {
-            presenter.showPetRecentMediaList();
+            presenter.getFollowedByUsersList();
         } catch (NoSuchMethodException | ClassNotFoundException | IllegalAccessException |
                 java.lang.InstantiationException | InvocationTargetException e) {
             e.printStackTrace();
