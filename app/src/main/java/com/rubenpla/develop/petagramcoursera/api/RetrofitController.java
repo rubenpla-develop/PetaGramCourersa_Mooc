@@ -21,7 +21,6 @@ public class RetrofitController {
 
     public RetrofitController (@NonNull String rootUrl) {
         this.rootUrl = rootUrl;
-
     }
 
     /*public Gson makeDefaultGson() {
@@ -35,7 +34,7 @@ public class RetrofitController {
     /*
      * Aqui se ha usado 'reflection' para obtener la clase de la cual se quiere obtener el
      * deserializador, de manera que proporcionandole el nombre de la clase en formato String, y el
-     * de la response de la llamada al webservice,
+     * de la response de la llamada 4al webservice,
      * es capaz de obtener su constructor y de esta manera y la clase respectivamente,
      * tenemos un metodo universal para aplicar
      * cuantos serializadores tenga la aplicación.
@@ -61,19 +60,7 @@ public class RetrofitController {
         return retrofitPetagramApi;
     }
 
-    /*public Call<? extends Object> getRecentMedia() {
-        if (retrofitPetagramApi != null) {
-            request = retrofitPetagramApi.getRecentPetMedia();
-        }
-
-        return request;
+    public void setRootUrl(@NonNull String rootUrl) {
+        this.rootUrl = rootUrl;
     }
-
-    public Call<? extends Object> getUserProfileInfo() {
-        if (retrofitPetagramApi != null) {
-            request = retrofitPetagramApi.getSelfUserInfo();
-        }
-
-        return request;
-    }*/
 }
