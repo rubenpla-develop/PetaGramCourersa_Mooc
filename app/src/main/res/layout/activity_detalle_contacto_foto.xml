@@ -51,9 +51,6 @@
                     android:layout_height="50dp"
                     android:src="@drawable/like_bone"
                     />
-
-
-
             </LinearLayout>
 
         </LinearLayout>
