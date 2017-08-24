@@ -2,13 +2,13 @@ package com.rubenpla.develop.petagramcoursera.mvp.model;
 
 public class UserRegisterModelResponse {
 
-    private UserRegisterModel model;
+    private UserRegister model;
 
-    public UserRegisterModel getModel() {
+    public UserRegister getModel() {
         return model;
     }
 
-    public void setModel(UserRegisterModel model) {
+    public void setModel(UserRegister model) {
         this.model = model;
     }
 }
