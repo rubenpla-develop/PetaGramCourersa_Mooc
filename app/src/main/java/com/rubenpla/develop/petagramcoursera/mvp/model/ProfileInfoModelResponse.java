@@ -4,14 +4,14 @@ package com.rubenpla.develop.petagramcoursera.mvp.model;
  * Created by alten on 11/8/17.
  */
 
-public class UserProfileModelResponse {
-    UserProfile user;
+public class ProfileInfoModelResponse {
+    ProfileInfo user;
 
-    public UserProfile getuser() {
+    public ProfileInfo getuser() {
         return user;
     }
 
-    public void setUser(UserProfile user) {
+    public void setUser(ProfileInfo user) {
         this.user = user;
     }
 }

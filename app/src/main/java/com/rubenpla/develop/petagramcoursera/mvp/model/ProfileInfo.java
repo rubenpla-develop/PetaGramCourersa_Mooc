@@ -1,8 +1,9 @@
 package com.rubenpla.develop.petagramcoursera.mvp.model;
 
-public class UserProfile {
-    String userName;
-    String urlAvatar;
+public class ProfileInfo {
+    private String userName;
+    private String userId;
+    private String urlAvatar;
 
     public String getUserName() {
         return userName;
@@ -18,5 +19,13 @@ public class UserProfile {
 
     public void setUrlAvatar(String urlAvatar) {
         this.urlAvatar = urlAvatar;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 }

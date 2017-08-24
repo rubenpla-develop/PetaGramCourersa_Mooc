@@ -1,8 +1,6 @@
 package com.rubenpla.develop.petagramcoursera.mvp.presenter;
 
-import android.content.Context;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.rubenpla.develop.petagramcoursera.api.RetrofitController;
 import com.rubenpla.develop.petagramcoursera.api.constants.ConstantesRestApi;
@@ -11,8 +9,8 @@ import com.rubenpla.develop.petagramcoursera.api.deserializer.RecentMediaDeseria
 import com.rubenpla.develop.petagramcoursera.api.endpoints.RetrofitPetagramApi;
 import com.rubenpla.develop.petagramcoursera.mvp.model.PetModel;
 import com.rubenpla.develop.petagramcoursera.mvp.model.PetModelResponse;
-import com.rubenpla.develop.petagramcoursera.mvp.model.UserProfileModelResponse;
-import com.rubenpla.develop.petagramcoursera.mvp.model.UserProfile;
+import com.rubenpla.develop.petagramcoursera.mvp.model.ProfileInfoModelResponse;
+import com.rubenpla.develop.petagramcoursera.mvp.model.ProfileInfo;
 import com.rubenpla.develop.petagramcoursera.mvp.view.IProfileFragmentView;
 
 import java.lang.reflect.InvocationTargetException;
@@ -27,7 +25,7 @@ public class ProfileFragmentPresenter implements IProfileFragmentPresenter {
     private IProfileFragmentView view;
     private RetrofitController controller;
     private RetrofitPetagramApi apiEndpoints;
-    private UserProfile userProfile;
+    private ProfileInfo profileInfo;
 
     public ProfileFragmentPresenter(IProfileFragmentView view) {
         this.view = view;
@@ -40,14 +38,14 @@ public class ProfileFragmentPresenter implements IProfileFragmentPresenter {
             InvocationTargetException, InstantiationException, IllegalAccessException {
 
         apiEndpoints = controller.setDeserializer(ProfileInfoDeserializer.class.getName(),
-                UserProfileModelResponse.class.getName());
+                ProfileInfoModelResponse.class.getName());
 
-        Call<UserProfileModelResponse> profileInfoCall = apiEndpoints.getProfileInfo();
+        Call<ProfileInfoModelResponse> profileInfoCall = apiEndpoints.getProfileInfo();
 
-        profileInfoCall.enqueue(new Callback<UserProfileModelResponse>() {
+        profileInfoCall.enqueue(new Callback<ProfileInfoModelResponse>() {
             @Override
-            public void onResponse(Call<UserProfileModelResponse> call, Response<UserProfileModelResponse> response) {
-                UserProfileModelResponse userInfoResponse = response.body();
+            public void onResponse(Call<ProfileInfoModelResponse> call, Response<ProfileInfoModelResponse> response) {
+                ProfileInfoModelResponse userInfoResponse = response.body();
 
                 try {
                     view.showProfileFullName(userInfoResponse.getuser().getUserName());
@@ -60,7 +58,7 @@ public class ProfileFragmentPresenter implements IProfileFragmentPresenter {
             }
 
             @Override
-            public void onFailure(Call<UserProfileModelResponse> call, Throwable t) {
+            public void onFailure(Call<ProfileInfoModelResponse> call, Throwable t) {
                 Log.e(this.getClass().getName(), "ERROR LOADING USER INFO!!!!!");
             }
         });
