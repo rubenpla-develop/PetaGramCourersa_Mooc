@@ -1,6 +1,8 @@
 package com.rubenpla.develop.petagramcoursera;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -44,7 +46,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityView 
             setSupportActionBar(toolbar);
         }
 
-        presenter = new MainActivityPresenter();
+        presenter = new MainActivityPresenter(this);
     }
 
     @Override
@@ -54,43 +56,31 @@ public class MainActivity extends AppCompatActivity implements MainActivityView 
         return true;
     }
 
-    //NEW
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_contact:
-
+                showSnackBarSuccesMessage("R.id.menu_contact");
                 break;
             case R.id.menu_about:
-
+                showSnackBarSuccesMessage("R.id.menu_about");
                 break;
             case R.id.menu_account:
                 Toast.makeText(this, "CLICK!!", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.menu_notifications :
                 try {
-                    presenter.registerUser();
-                } catch (ClassNotFoundException e) {
-                    e.printStackTrace();
-                } catch (NoSuchMethodException e) {
-                    e.printStackTrace();
-                } catch (InvocationTargetException e) {
-                    e.printStackTrace();
-                } catch (InstantiationException e) {
-                    e.printStackTrace();
-                } catch (IllegalAccessException e) {
+                    presenter.getProfileInfo();
+                } catch (ClassNotFoundException|NoSuchMethodException|InvocationTargetException
+                        |InstantiationException| IllegalAccessException e) {
                     e.printStackTrace();
                 }
-
             default:
-
                 break;
         }
 
         return true;
     }
-
-
 
     private ArrayList<Fragment> agregarFragments(){
         ArrayList<Fragment> fragments = new ArrayList<>();
@@ -109,13 +99,25 @@ public class MainActivity extends AppCompatActivity implements MainActivityView 
         tabLayout.getTabAt(1).setIcon(R.drawable.ic_action_name);
     }
 
+
+    @Override
+    public void showSnackBarSuccesMessage(String succesMessage) {
+        Snackbar.make(findViewById(android.R.id.content), R.string.snackbar_register_user_success, Snackbar.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void showSnackBarErrorMessage(String errorMessage) {
+        Snackbar.make(findViewById(android.R.id.content), R.string.snackbar_register_user_error, Snackbar.LENGTH_LONG).show();
+    }
+
     @Override
     public void showUserProfile() {
 
     }
 
     @Override
-    public void registerUser() {
-
+    public void registerUser() throws ClassNotFoundException, NoSuchMethodException,
+            InstantiationException, IllegalAccessException, InvocationTargetException {
+        presenter.registerUser();
     }
 }
