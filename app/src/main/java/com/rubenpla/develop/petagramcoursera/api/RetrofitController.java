@@ -16,20 +16,11 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class RetrofitController {
 
     private RetrofitPetagramApi retrofitPetagramApi;
-    private Call<? extends Object> request;
     private String rootUrl;
 
     public RetrofitController (@NonNull String rootUrl) {
         this.rootUrl = rootUrl;
     }
-
-    /*public Gson makeDefaultGson() {
-        Gson gson = new GsonBuilder()
-                .setLenient()
-                .create();
-
-        return gson;
-    }*/
 
     /*
      * Aqui se ha usado 'reflection' para obtener la clase de la cual se quiere obtener el

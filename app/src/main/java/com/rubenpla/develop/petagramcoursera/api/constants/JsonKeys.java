@@ -1,8 +1,5 @@
 package com.rubenpla.develop.petagramcoursera.api.constants;
 
-/**
- * Created by anahisalgado on 25/05/16.
- */
 public final class JsonKeys {
 
     public static final String MEDIA_RESPONSE_ARRAY         = "data";
@@ -18,9 +15,7 @@ public final class JsonKeys {
     public static final String MEDIA_LIKES_COUNT            = "count";
     public static final String FOLLOWED_BY_RESPONSE_ARRAY   = "data";
 
-
-
-
-
-
+    //FIREBASE DB keys
+    public static final String FIREBASE_REGISTER_USER_ID_USER = "idUser";
+    public static final String FIREBASE_REGISTER_USER_ID_DEVICE = "idDevice";
 }
