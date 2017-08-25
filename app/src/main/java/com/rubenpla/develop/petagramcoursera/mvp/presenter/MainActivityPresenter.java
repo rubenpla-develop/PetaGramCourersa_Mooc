@@ -85,14 +85,15 @@ public class MainActivityPresenter implements IMainActivityPresenter {
                 .setDeserializer(ProfileInfoDeserializer.class.getName(),
                         UserRegisterModelResponse.class.getName());
 
-        Call<UserRegisterModelResponse> registerUser = retrofitPetagramApi.
-                setUserRegister(userRegister.getUserId(), userRegister.getDeviceId());
+        Call<UserRegisterModelResponse> registerUser = retrofitPetagramApi
+                .setUserRegister(userRegister.getUserId(), userRegister.getDeviceId());
 
         registerUser.enqueue(new Callback<UserRegisterModelResponse>() {
             @Override
-            public void onResponse(Call<UserRegisterModelResponse> call, Response<UserRegisterModelResponse> response) {
-                    view.showSnackBarSuccesMessage(((Context) view).
-                            getString(R.string.snackbar_register_user_success));
+            public void onResponse(Call<UserRegisterModelResponse> call,
+                                   Response<UserRegisterModelResponse> response) {
+                view.showSnackBarSuccesMessage(((Context) view)
+                        .getString(R.string.snackbar_register_user_success));
             }
 
             @Override
