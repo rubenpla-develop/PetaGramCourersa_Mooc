@@ -51,6 +51,8 @@ dependencies {
     compile 'com.bartoszlipinski:recyclerviewheader2:2.0.1'
 
     //Firebase
+    //https://guarded-coast-64549.herokuapp.com/
+    //https://git.heroku.com/guarded-coast-64549.git
     compile 'com.google.firebase:firebase-messaging:10.2.6'
     compile 'com.google.firebase:firebase-core:10.2.6'
 }
