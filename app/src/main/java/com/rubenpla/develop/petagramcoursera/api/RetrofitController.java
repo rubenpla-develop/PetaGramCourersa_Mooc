@@ -4,12 +4,10 @@ import android.support.annotation.NonNull;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.rubenpla.develop.petagramcoursera.api.constants.ConstantesRestApi;
 import com.rubenpla.develop.petagramcoursera.api.endpoints.RetrofitPetagramApi;
 
 import java.lang.reflect.InvocationTargetException;
 
-import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -49,6 +47,27 @@ public class RetrofitController {
         retrofitPetagramApi = retrofit.create(RetrofitPetagramApi.class);
 
         return retrofitPetagramApi;
+    }
+
+    public RetrofitPetagramApi buildDefaultController() {
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(rootUrl)
+                .addConverterFactory(GsonConverterFactory.create(makeDefaultGson()))
+                .build();
+
+
+        retrofitPetagramApi = retrofit.create(RetrofitPetagramApi.class);
+
+        return retrofitPetagramApi;
+    }
+
+    public Gson makeDefaultGson() {
+        Gson gson = new GsonBuilder()
+                .setLenient()
+                .create();
+
+        return gson;
     }
 
     public void setRootUrl(@NonNull String rootUrl) {
