@@ -19,6 +19,7 @@
             </intent-filter>
         </activity>
         <activity android:name="com.rubenpla.develop.petagramcoursera.ProfileInfoDetailActivity"></activity>
+        <activity android:name="com.rubenpla.develop.petagramcoursera.RegisterUserActivity"></activity>
     </application>
 
 </manifest>
