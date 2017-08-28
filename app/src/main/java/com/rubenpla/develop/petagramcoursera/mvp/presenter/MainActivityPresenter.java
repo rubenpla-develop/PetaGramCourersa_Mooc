@@ -81,9 +81,7 @@ public class MainActivityPresenter implements IMainActivityPresenter {
         final RetrofitController retrofitController =
                 new RetrofitController(ConstantesRestApi.API_ROOT_URL);
 
-        RetrofitPetagramApi retrofitPetagramApi = retrofitController
-                .setDeserializer(ProfileInfoDeserializer.class.getName(),
-                        UserRegisterModelResponse.class.getName());
+        RetrofitPetagramApi retrofitPetagramApi = retrofitController.buildDefaultController();
 
         Call<UserRegisterModelResponse> registerUser = retrofitPetagramApi
                 .setUserRegister(userRegister.getUserId(), userRegister.getDeviceId());
