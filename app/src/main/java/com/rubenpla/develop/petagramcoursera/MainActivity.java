@@ -1,17 +1,15 @@
 package com.rubenpla.develop.petagramcoursera;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import com.rubenpla.develop.petagramcoursera.adapter.PageAdapter;
 import com.rubenpla.develop.petagramcoursera.mvp.presenter.MainActivityPresenter;
@@ -66,7 +64,16 @@ public class MainActivity extends AppCompatActivity implements MainActivityView 
                 showSnackBarSuccesMessage("R.id.menu_about");
                 break;
             case R.id.menu_account:
-                Toast.makeText(this, "CLICK!!", Toast.LENGTH_SHORT).show();
+                Bundle bundle = new Bundle();
+                bundle.putString("value1", "This is a string");
+
+                Intent intent = new Intent(this, RegisterUserActivity.class);
+
+                if (bundle != null) {
+                    intent.putExtras(bundle);
+                }
+
+                startActivity(intent);
                 break;
             case R.id.menu_notifications :
                 try {
@@ -99,15 +106,16 @@ public class MainActivity extends AppCompatActivity implements MainActivityView 
         tabLayout.getTabAt(1).setIcon(R.drawable.ic_action_name);
     }
 
-
     @Override
     public void showSnackBarSuccesMessage(String succesMessage) {
-        Snackbar.make(findViewById(android.R.id.content), R.string.snackbar_register_user_success, Snackbar.LENGTH_LONG).show();
+        Snackbar.make(findViewById(android.R.id.content), R.string.snackbar_register_user_success,
+                Snackbar.LENGTH_LONG).show();
     }
 
     @Override
     public void showSnackBarErrorMessage(String errorMessage) {
-        Snackbar.make(findViewById(android.R.id.content), R.string.snackbar_register_user_error, Snackbar.LENGTH_LONG).show();
+        Snackbar.make(findViewById(android.R.id.content), R.string.snackbar_register_user_error,
+                Snackbar.LENGTH_LONG).show();
     }
 
     @Override
