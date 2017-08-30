@@ -9,6 +9,7 @@ import com.rubenpla.develop.petagramcoursera.R;
 import com.rubenpla.develop.petagramcoursera.api.RetrofitController;
 import com.rubenpla.develop.petagramcoursera.api.constants.ConstantesRestApi;
 import com.rubenpla.develop.petagramcoursera.api.deserializer.ProfileInfoDeserializer;
+import com.rubenpla.develop.petagramcoursera.api.deserializer.RegisterUserDeserializer;
 import com.rubenpla.develop.petagramcoursera.api.endpoints.RetrofitPetagramApi;
 import com.rubenpla.develop.petagramcoursera.mvp.model.ProfileInfoModelResponse;
 import com.rubenpla.develop.petagramcoursera.mvp.model.UserRegister;
@@ -81,7 +82,9 @@ public class MainActivityPresenter implements IMainActivityPresenter {
         final RetrofitController retrofitController =
                 new RetrofitController(ConstantesRestApi.API_ROOT_URL);
 
-        RetrofitPetagramApi retrofitPetagramApi = retrofitController.buildDefaultController();
+        RetrofitPetagramApi retrofitPetagramApi = retrofitController
+                .setDeserializer(RegisterUserDeserializer.class.getName(),
+                        UserRegisterModelResponse.class.getName());
 
         Call<UserRegisterModelResponse> registerUser = retrofitPetagramApi
                 .setUserRegister(userRegister.getUserId(), userRegister.getDeviceId());
@@ -100,6 +103,5 @@ public class MainActivityPresenter implements IMainActivityPresenter {
                         .getString(R.string.snackbar_register_user_error));
             }
         });
-
     }
 }

@@ -20,8 +20,7 @@ public class RegisterUserDeserializer implements JsonDeserializer<UserRegisterMo
 
         Gson gson = new Gson();
         UserRegisterModelResponse userRegisterResponse = gson.fromJson(json, UserRegisterModelResponse.class);
-        JsonObject useRegisterModelResponseData = json.getAsJsonObject()
-                .getAsJsonObject(JsonKeys.USER_RESPONSE_OBJECT);
+        JsonObject useRegisterModelResponseData = json.getAsJsonObject();
 
         userRegisterResponse.setModel(deserialize(useRegisterModelResponseData));
         return userRegisterResponse;
