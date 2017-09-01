@@ -14,7 +14,7 @@ import com.rubenpla.develop.petagramcoursera.mvp.model.PetModelResponse;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 
-public class RecentMediaDeserializer implements JsonDeserializer<PetModelResponse> {
+public class MediaDataDeserializer implements JsonDeserializer<PetModelResponse> {
     @Override
     public PetModelResponse deserialize(JsonElement json, Type typeOfT,
                                         JsonDeserializationContext context)
@@ -30,9 +30,11 @@ public class RecentMediaDeserializer implements JsonDeserializer<PetModelRespons
     }
 
     private ArrayList<PetModel> deserialize(JsonArray petResponseData){
-        ArrayList<PetModel> contactos = new ArrayList<>();
+        ArrayList<PetModel> mediaList = new ArrayList<>();
         for (int i = 0; i < petResponseData.size() ; i++) {
             JsonObject petResponseDataObject = petResponseData.get(i).getAsJsonObject();
+
+            String mediaId = petResponseDataObject.get(JsonKeys.MEDIA_ID).getAsString();
 
             JsonObject userJson     = petResponseDataObject.getAsJsonObject(JsonKeys.USER);
             String id               = userJson.get(JsonKeys.USER_ID).getAsString();
@@ -49,14 +51,15 @@ public class RecentMediaDeserializer implements JsonDeserializer<PetModelRespons
 
             PetModel currentPet = new PetModel();
             currentPet.setId(id);
+            currentPet.setMediaId(mediaId);
             currentPet.setfullName(fullName);
             currentPet.seturlPhoto(urlFoto);
             currentPet.setLikes(likes);
 
-            contactos.add(currentPet);
+            mediaList.add(currentPet);
 
         }
 
-        return contactos;
+        return mediaList;
     }
 }
