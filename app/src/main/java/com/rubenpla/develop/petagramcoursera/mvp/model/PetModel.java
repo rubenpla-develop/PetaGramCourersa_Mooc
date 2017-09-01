@@ -3,6 +3,7 @@ package com.rubenpla.develop.petagramcoursera.mvp.model;
 public class PetModel {
 
     private String id;
+    private String mediaId;
     private String fullName;
     private String urlPhoto;
     private int likes = 0;
@@ -23,6 +24,14 @@ public class PetModel {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getMediaId() {
+        return mediaId;
+    }
+
+    public void setMediaId(String mediaId) {
+        this.mediaId = mediaId;
     }
 
     public String getfullName() {
