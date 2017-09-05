@@ -18,7 +18,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.rubenpla.develop.petagramcoursera.ProfileInfoDetailActivity"></activity>
+        <activity android:name="com.rubenpla.develop.petagramcoursera.MediaDetailActivity"></activity>
         <activity android:name="com.rubenpla.develop.petagramcoursera.RegisterUserActivity"></activity>
     </application>
 
