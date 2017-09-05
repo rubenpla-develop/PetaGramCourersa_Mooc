@@ -10,18 +10,18 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.rubenpla.develop.petagramcoursera.ProfileInfoDetailActivity;
+import com.rubenpla.develop.petagramcoursera.MediaDetailActivity;
 import com.rubenpla.develop.petagramcoursera.R;
 import com.rubenpla.develop.petagramcoursera.mvp.model.PetModel;
 import com.rubenpla.develop.petagramcoursera.mvp.view.IRecyclerViewFragmentView;
 import com.rubenpla.develop.petagramcoursera.mvp.view.MainActivityView;
+import com.rubenpla.develop.petagramcoursera.pojo.LikeMediaParams;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 public class PetGridAdapter extends RecyclerView.Adapter<PetGridAdapter.PetViewHolder> implements
         AdapterView.OnItemClickListener {
@@ -58,12 +58,20 @@ public class PetGridAdapter extends RecyclerView.Adapter<PetGridAdapter.PetViewH
         holder.petPhoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Toast.makeText(activity, contacto.getNombre(), Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(context, ProfileInfoDetailActivity.class);
+                Intent intent = new Intent(context, MediaDetailActivity.class);
                 intent.putExtra("url", list.get(position).geturlPhoto());
                 intent.putExtra("like", list.get(position).getLikes());
-                //intent.putExtra("email", contacto.getEmail());
                 context.startActivity(intent);
+            }
+        });
+
+
+        holder.likePhotoContainer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String user = list.get(position).getId();
+                String mediaId = list.get(position).getMediaId();
+                LikeMediaParams params = new LikeMediaParams(user, mediaId);
             }
         });
     }
@@ -89,6 +97,7 @@ public class PetGridAdapter extends RecyclerView.Adapter<PetGridAdapter.PetViewH
 
         @BindView(R.id.tvLikes) TextView petLikes;
         @BindView(R.id.imgFoto) ImageView petPhoto;
+        @BindView(R.id.like_photo_container) View likePhotoContainer;
 
         public PetViewHolder(View itemView) {
             super(itemView);

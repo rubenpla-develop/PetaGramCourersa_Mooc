@@ -6,7 +6,7 @@ import android.view.View;
 import com.rubenpla.develop.petagramcoursera.api.RetrofitController;
 import com.rubenpla.develop.petagramcoursera.api.constants.ConstantesRestApi;
 import com.rubenpla.develop.petagramcoursera.api.deserializer.FollowedByDeserializer;
-import com.rubenpla.develop.petagramcoursera.api.deserializer.RecentMediaDeserializer;
+import com.rubenpla.develop.petagramcoursera.api.deserializer.MediaDataDeserializer;
 import com.rubenpla.develop.petagramcoursera.api.endpoints.RetrofitPetagramApi;
 import com.rubenpla.develop.petagramcoursera.mvp.model.FollowedByUser;
 import com.rubenpla.develop.petagramcoursera.mvp.model.FollowedByUserModelResponse;
@@ -76,7 +76,7 @@ public class RecyclerViewFragmentPresenter implements IRecyclerViewFragmentPrese
     public void showRecentMediaList() throws NoSuchMethodException, ClassNotFoundException,
             IllegalAccessException, InstantiationException, InvocationTargetException {
 
-        apiEndpoints = controller.setDeserializer(RecentMediaDeserializer.class.getName(),
+        apiEndpoints = controller.setDeserializer(MediaDataDeserializer.class.getName(),
             PetModelResponse.class.getName());
 
         Call<PetModelResponse> recentMediaCall = apiEndpoints.getUserById(userId);
