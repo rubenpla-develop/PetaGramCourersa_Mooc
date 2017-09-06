@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import com.bartoszlipinski.recyclerviewheader2.RecyclerViewHeader;
 import com.rubenpla.develop.petagramcoursera.R;
-import com.rubenpla.develop.petagramcoursera.adapter.PetGridAdapter;
+import com.rubenpla.develop.petagramcoursera.adapter.GridAdapter;
 import com.rubenpla.develop.petagramcoursera.mvp.model.PetModel;
 import com.rubenpla.develop.petagramcoursera.mvp.presenter.ProfileFragmentPresenter;
 import com.rubenpla.develop.petagramcoursera.mvp.presenter.RecyclerViewFragmentPresenter;
@@ -33,7 +33,7 @@ public class ProfileFragment extends Fragment implements IProfileFragmentView {
     @BindView(R.id.user_full_name) TextView tvUserName;
     @BindView(R.id.user_image) RoundedImageView ivProfilePicture;
     private GridLayoutManager layoutManager;
-    private PetGridAdapter adapter;
+    private GridAdapter adapter;
     private ProfileFragmentPresenter profileFragmentPresenter;
 
     @Nullable
@@ -79,7 +79,7 @@ public class ProfileFragment extends Fragment implements IProfileFragmentView {
 
     @Override
     public void showGridList(ArrayList<PetModel> list) {
-        adapter = new PetGridAdapter(getContext(), list);
+        adapter = new GridAdapter(getContext(), list, profileFragmentPresenter);
         petRecyclerView.setAdapter(adapter);
     }
 }

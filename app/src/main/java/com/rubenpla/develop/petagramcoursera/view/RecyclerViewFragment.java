@@ -11,8 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.rubenpla.develop.petagramcoursera.R;
-import com.rubenpla.develop.petagramcoursera.adapter.PetGridAdapter;
-import com.rubenpla.develop.petagramcoursera.mvp.model.FollowedByUser;
+import com.rubenpla.develop.petagramcoursera.adapter.GridAdapter;
 import com.rubenpla.develop.petagramcoursera.mvp.model.PetModel;
 import com.rubenpla.develop.petagramcoursera.mvp.presenter.RecyclerViewFragmentPresenter;
 import com.rubenpla.develop.petagramcoursera.mvp.view.IRecyclerViewFragmentView;
@@ -27,7 +26,7 @@ public class RecyclerViewFragment extends Fragment implements IRecyclerViewFragm
 
     @BindView(R.id.recyclerView) RecyclerView petRecyclerView;
     private GridLayoutManager layoutManager;
-    private PetGridAdapter adapter;
+    private GridAdapter adapter;
     private RecyclerViewFragmentPresenter presenter;
 
     @Nullable
@@ -55,7 +54,7 @@ public class RecyclerViewFragment extends Fragment implements IRecyclerViewFragm
 
     @Override
     public void showGridList(ArrayList<PetModel> list) {
-        adapter = new PetGridAdapter(getContext(), list);
+        adapter = new GridAdapter(getContext(), list, presenter);
         petRecyclerView.setAdapter(adapter);
     }
 

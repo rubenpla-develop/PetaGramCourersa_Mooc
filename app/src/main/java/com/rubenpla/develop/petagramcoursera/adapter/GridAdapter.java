@@ -13,9 +13,11 @@ import android.widget.TextView;
 import com.rubenpla.develop.petagramcoursera.MediaDetailActivity;
 import com.rubenpla.develop.petagramcoursera.R;
 import com.rubenpla.develop.petagramcoursera.mvp.model.PetModel;
+import com.rubenpla.develop.petagramcoursera.mvp.presenter.basepresenter.BaseMediaPresenter;
 import com.rubenpla.develop.petagramcoursera.mvp.view.IRecyclerViewFragmentView;
-import com.rubenpla.develop.petagramcoursera.mvp.view.MainActivityView;
+import com.rubenpla.develop.petagramcoursera.mvp.view.IViewHolderView;
 import com.rubenpla.develop.petagramcoursera.pojo.LikeMediaParams;
+import com.rubenpla.develop.petagramcoursera.util.ParamKeys;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -23,16 +25,26 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class PetGridAdapter extends RecyclerView.Adapter<PetGridAdapter.PetViewHolder> implements
+public class GridAdapter extends RecyclerView.Adapter<GridAdapter.PetagramViewHolder> implements
         AdapterView.OnItemClickListener {
 
     private Context context;
     private ArrayList<PetModel> list;
     private RecyclerView.ViewHolder viewHolder;
+    private LikeMediaParams params;
+    BaseMediaPresenter presenter;
 
-    public PetGridAdapter(Context context, ArrayList<PetModel> list) {
+
+    public GridAdapter(Context context, ArrayList<PetModel> list) {
         this.list = list;
         this.context = context;
+    }
+
+    public GridAdapter(Context context, ArrayList<PetModel> list,
+                       BaseMediaPresenter presenter) {
+        this.list = list;
+        this.context = context;
+        this.presenter = presenter;
     }
 
     //UPDATE ADAPTER CONTENT SYNCHRONIOUSLY WITHOU CALLING CONSTRUCTOR AGAIN
@@ -46,21 +58,23 @@ public class PetGridAdapter extends RecyclerView.Adapter<PetGridAdapter.PetViewH
     }
 
     @Override
-    public PetViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public PetagramViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.pet_item, parent, false);
-        PetViewHolder viewHolder = new PetViewHolder(view);
+        PetagramViewHolder viewHolder = new PetagramViewHolder(view);
         return viewHolder;
     }
 
     @Override
-    public void onBindViewHolder(PetViewHolder holder, final int position) {
+    public void onBindViewHolder(PetagramViewHolder holder, final int position) {
         holder.bindPet(position);
         holder.petPhoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, MediaDetailActivity.class);
-                intent.putExtra("url", list.get(position).geturlPhoto());
-                intent.putExtra("like", list.get(position).getLikes());
+                intent.putExtra(ParamKeys.KEY_EXTRA_URL, list.get(position).geturlPhoto());
+                intent.putExtra(ParamKeys.KEY_EXTRA_LIKES, list.get(position).getLikes());
+                intent.putExtra(ParamKeys.KEY_EXTRA_USER_ID, list.get(position).getId());
+                intent.putExtra(ParamKeys.KEY_EXTRA_MEDIA_ID, list.get(position).getMediaId());
                 context.startActivity(intent);
             }
         });
@@ -72,6 +86,7 @@ public class PetGridAdapter extends RecyclerView.Adapter<PetGridAdapter.PetViewH
                 String user = list.get(position).getId();
                 String mediaId = list.get(position).getMediaId();
                 LikeMediaParams params = new LikeMediaParams(user, mediaId);
+                presenter.onClickLikeButton(params);
             }
         });
     }
@@ -93,13 +108,13 @@ public class PetGridAdapter extends RecyclerView.Adapter<PetGridAdapter.PetViewH
 
 
     //VIEWHOLDER CLASS
-    public class PetViewHolder extends RecyclerView.ViewHolder {
+    public class PetagramViewHolder extends RecyclerView.ViewHolder implements IViewHolderView {
 
         @BindView(R.id.tvLikes) TextView petLikes;
         @BindView(R.id.imgFoto) ImageView petPhoto;
         @BindView(R.id.like_photo_container) View likePhotoContainer;
 
-        public PetViewHolder(View itemView) {
+        public PetagramViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
         }
