@@ -15,7 +15,6 @@ import com.rubenpla.develop.petagramcoursera.R;
 import com.rubenpla.develop.petagramcoursera.adapter.GridAdapter;
 import com.rubenpla.develop.petagramcoursera.mvp.model.PetModel;
 import com.rubenpla.develop.petagramcoursera.mvp.presenter.ProfileFragmentPresenter;
-import com.rubenpla.develop.petagramcoursera.mvp.presenter.RecyclerViewFragmentPresenter;
 import com.rubenpla.develop.petagramcoursera.mvp.view.IProfileFragmentView;
 import com.rubenpla.develop.petagramcoursera.view.custom.RoundedImageView;
 import com.squareup.picasso.Picasso;
@@ -82,4 +81,21 @@ public class ProfileFragment extends Fragment implements IProfileFragmentView {
         adapter = new GridAdapter(getContext(), list, profileFragmentPresenter);
         petRecyclerView.setAdapter(adapter);
     }
+
+    @Override
+    public void onClickLikeButton() {
+
+    }
+
+
+    @Override
+    public void showSnackBarSuccesMessage(String succesMessage) {
+
+    }
+
+    @Override
+    public void showSnackBarErrorMessage(String errorMessage) {
+
+    }
+
 }

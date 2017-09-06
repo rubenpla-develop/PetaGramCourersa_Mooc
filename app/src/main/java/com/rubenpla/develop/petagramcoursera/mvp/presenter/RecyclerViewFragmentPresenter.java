@@ -1,8 +1,5 @@
 package com.rubenpla.develop.petagramcoursera.mvp.presenter;
 
-import android.content.Context;
-import android.view.View;
-
 import com.rubenpla.develop.petagramcoursera.api.RetrofitController;
 import com.rubenpla.develop.petagramcoursera.api.constants.ConstantesRestApi;
 import com.rubenpla.develop.petagramcoursera.api.deserializer.FollowedByDeserializer;
@@ -12,6 +9,7 @@ import com.rubenpla.develop.petagramcoursera.mvp.model.FollowedByUser;
 import com.rubenpla.develop.petagramcoursera.mvp.model.FollowedByUserModelResponse;
 import com.rubenpla.develop.petagramcoursera.mvp.model.PetModel;
 import com.rubenpla.develop.petagramcoursera.mvp.model.PetModelResponse;
+import com.rubenpla.develop.petagramcoursera.mvp.presenter.basepresenter.BaseMediaPresenter;
 import com.rubenpla.develop.petagramcoursera.mvp.view.IRecyclerViewFragmentView;
 
 import java.lang.reflect.InvocationTargetException;
@@ -21,17 +19,14 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class RecyclerViewFragmentPresenter implements IRecyclerViewFragmentPresenter {
+public class RecyclerViewFragmentPresenter extends BaseMediaPresenter implements IRecyclerViewFragmentPresenter {
 
     private RetrofitController controller;
     private RetrofitPetagramApi apiEndpoints;
-    private Context context;
-    private IRecyclerViewFragmentView view;
     private String userId;
 
-    public RecyclerViewFragmentPresenter(IRecyclerViewFragmentView view, Context context) {
-        this.view = view;
-        this.context = context;
+    public RecyclerViewFragmentPresenter(IRecyclerViewFragmentView view) {
+        super(view);
 
         controller = new RetrofitController(ConstantesRestApi.INSTA_ROOT_URL);
     }
@@ -88,19 +83,11 @@ public class RecyclerViewFragmentPresenter implements IRecyclerViewFragmentPrese
                 ArrayList<PetModel> petsList;
                 PetModelResponse petResponse = response.body();
                 petsList = petResponse.getPetModels();
-                view.showGridList(petsList);
+                ((IRecyclerViewFragmentView) getView()).showGridList(petsList);
             }
 
             @Override
             public void onFailure(Call<PetModelResponse> call, Throwable t) {}
         });
-    }
-
-    @Override
-    public void showPetPhoto(View view, int position) throws NullPointerException {
-    }
-
-    @Override
-    public void showUser() throws NullPointerException {
     }
 }

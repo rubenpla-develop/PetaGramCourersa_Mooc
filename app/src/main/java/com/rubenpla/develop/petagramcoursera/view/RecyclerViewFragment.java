@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.rubenpla.develop.petagramcoursera.MainActivity;
 import com.rubenpla.develop.petagramcoursera.R;
 import com.rubenpla.develop.petagramcoursera.adapter.GridAdapter;
 import com.rubenpla.develop.petagramcoursera.mvp.model.PetModel;
@@ -37,7 +38,7 @@ public class RecyclerViewFragment extends Fragment implements IRecyclerViewFragm
         ButterKnife.bind(this, view);
 
         //init components for view
-        presenter = new RecyclerViewFragmentPresenter(this, getContext());
+        presenter = new RecyclerViewFragmentPresenter(this);
         layoutManager = new GridLayoutManager(getContext(), 2);
         petRecyclerView.setLayoutManager(layoutManager);
 
@@ -63,4 +64,18 @@ public class RecyclerViewFragment extends Fragment implements IRecyclerViewFragm
        //TODO
     }
 
+    @Override
+    public void onClickLikeButton() {
+
+    }
+
+    @Override
+    public void showSnackBarSuccesMessage(String succesMessage) {
+        ((MainActivity)getActivity()).showSnackBarSuccesMessage(succesMessage);
+    }
+
+    @Override
+    public void showSnackBarErrorMessage(String errorMessage) {
+        ((MainActivity)getActivity()).showSnackBarSuccesMessage(errorMessage);
+    }
 }
