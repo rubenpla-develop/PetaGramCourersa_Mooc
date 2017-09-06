@@ -25,8 +25,6 @@ import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity implements MainActivityView {
 
-    private static final String KEY_EXTRA_NAME = "name";
-
     @BindView(R.id.toolbar) Toolbar toolbar;
     @BindView(R.id.tabLayout) TabLayout tabLayout;
     @BindView(R.id.viewPager) ViewPager viewPager;
@@ -108,14 +106,12 @@ public class MainActivity extends AppCompatActivity implements MainActivityView 
 
     @Override
     public void showSnackBarSuccesMessage(String succesMessage) {
-        Snackbar.make(findViewById(android.R.id.content), R.string.snackbar_register_user_success,
-                Snackbar.LENGTH_LONG).show();
+        Snackbar.make(findViewById(android.R.id.content), succesMessage, Snackbar.LENGTH_LONG).show();
     }
 
     @Override
     public void showSnackBarErrorMessage(String errorMessage) {
-        Snackbar.make(findViewById(android.R.id.content), R.string.snackbar_register_user_error,
-                Snackbar.LENGTH_LONG).show();
+        Snackbar.make(findViewById(android.R.id.content), errorMessage, Snackbar.LENGTH_LONG).show();
     }
 
     @Override

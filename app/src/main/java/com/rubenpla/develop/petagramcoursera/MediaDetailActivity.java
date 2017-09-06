@@ -8,9 +8,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.rubenpla.develop.petagramcoursera.mvp.presenter.MediaDetailActivityPresenter;
-import com.rubenpla.develop.petagramcoursera.mvp.presenter.basepresenter.IBaseFragmentPresenter;
 import com.rubenpla.develop.petagramcoursera.mvp.view.baseview.IBaseMediaView;
 import com.rubenpla.develop.petagramcoursera.pojo.LikeMediaParams;
+import com.rubenpla.develop.petagramcoursera.util.ParamKeys;
 import com.squareup.picasso.Picasso;
 
 import butterknife.BindView;
@@ -20,16 +20,12 @@ import butterknife.OnClick;
 import static android.support.design.widget.Snackbar.LENGTH_LONG;
 
 public class MediaDetailActivity extends AppCompatActivity implements IBaseMediaView {
-    private static final String KEY_EXTRA_URL = "URL";
-    private static final String KEY_EXTRA_LIKES = "LIKES";
-    private static final String KEY_EXTRA_USER_ID = "USER_ID";
-    private static final String KEY_EXTRA_MEDIA_ID = "MEDIA_ID";
 
     @BindView(R.id.imgFotoDetalle) ImageView detailPhoto;
     @BindView(R.id.tvLikesDetalle) TextView detailLikes;
     @BindView(R.id.like_container) View likeContainer;
 
-    private IBaseFragmentPresenter presenter;
+    private MediaDetailActivityPresenter presenter;
     private LikeMediaParams mediaParams;
 
     @Override
@@ -39,13 +35,12 @@ public class MediaDetailActivity extends AppCompatActivity implements IBaseMedia
 
         ButterKnife.bind(this);
 
-
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-            String url   = extras.getString(KEY_EXTRA_URL);
-            int likes    = extras.getInt(KEY_EXTRA_LIKES);
-            String userId = extras.getString(KEY_EXTRA_USER_ID);
-            String mediaId = extras.getString(KEY_EXTRA_MEDIA_ID);
+            String url   = extras.getString(ParamKeys.KEY_EXTRA_URL);
+            int likes    = extras.getInt(ParamKeys.KEY_EXTRA_LIKES);
+            String userId = extras.getString(ParamKeys.KEY_EXTRA_USER_ID);
+            String mediaId = extras.getString(ParamKeys.KEY_EXTRA_MEDIA_ID);
 
             presenter = new MediaDetailActivityPresenter(this);
 
@@ -62,12 +57,7 @@ public class MediaDetailActivity extends AppCompatActivity implements IBaseMedia
 
     @OnClick(R.id.like_container)
     void onClickLikeMedia(View view) {
-        presenter.likeMedia(mediaParams);
-    }
-
-    @Override
-    public void syncLikeIconResourceState(boolean isLiked) {
-
+        presenter.onClickLikeButton(mediaParams);
     }
 
     @Override
@@ -78,5 +68,10 @@ public class MediaDetailActivity extends AppCompatActivity implements IBaseMedia
     @Override
     public void showSnackBarErrorMessage(String errorMessage) {
         Snackbar.make(findViewById(android.R.id.content), errorMessage, LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onClickLikeButton() {
+        //TODO stuff
     }
 }

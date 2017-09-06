@@ -127,5 +127,10 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.PetagramViewHo
                     .error(R.drawable.shock_rave_bonus_icon)
                     .into(petPhoto);
         }
+
+        @Override
+        public void onClickLikeButton() {
+
+        }
     }
 }
