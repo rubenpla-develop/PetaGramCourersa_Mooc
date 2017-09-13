@@ -1,10 +1,10 @@
 package com.rubenpla.develop.petagramcoursera.mvp.presenter;
 
-import com.rubenpla.develop.petagramcoursera.mvp.presenter.basepresenter.IBasePresenter;
+import com.rubenpla.develop.petagramcoursera.mvp.presenter.basepresenter.IBaseMediaPresenter;
 
 import java.lang.reflect.InvocationTargetException;
 
-public interface IProfileFragmentPresenter extends IBasePresenter {
+public interface IProfileFragmentPresenter extends IBaseMediaPresenter {
 
     void showProfileInfo() throws ClassNotFoundException, NoSuchMethodException,
             InvocationTargetException, InstantiationException, IllegalAccessException;

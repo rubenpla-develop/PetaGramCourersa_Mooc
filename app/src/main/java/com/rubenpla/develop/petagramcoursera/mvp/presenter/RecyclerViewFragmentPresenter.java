@@ -31,6 +31,8 @@ public class RecyclerViewFragmentPresenter extends BaseMediaPresenter implements
         controller = new RetrofitController(ConstantesRestApi.INSTA_ROOT_URL);
     }
 
+    //TODO THIS METHOD NEEDS REFACTOR, IF WE HAVE XX.345 users, performance and clean code will be
+    //todo  absolutelly broken.
     @Override
     public void getFollowedByUsersList() throws ClassNotFoundException, NoSuchMethodException,
             InvocationTargetException, InstantiationException, IllegalAccessException {
