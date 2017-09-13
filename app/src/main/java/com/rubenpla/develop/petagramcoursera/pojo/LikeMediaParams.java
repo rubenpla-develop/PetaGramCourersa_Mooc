@@ -2,7 +2,7 @@ package com.rubenpla.develop.petagramcoursera.pojo;
 
 import com.google.firebase.iid.FirebaseInstanceId;
 
-public class LikeMediaParams {
+public final class LikeMediaParams {
     private String userId;
     private String deviceId;
     private String mediaId;
