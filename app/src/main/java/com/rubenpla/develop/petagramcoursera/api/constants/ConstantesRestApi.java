@@ -44,5 +44,7 @@ public final class ConstantesRestApi {
     //FIREBASE/API STUFF
     public static final String API_ROOT_URL = "https://guarded-coast-64549.herokuapp.com/";
     public static final String KEY_API_POST_REGISTER_USER = "registrar-usuario/";
-    public static final String KEY_API_POST_REGISTER_LIKE_MEDIA = "registrar-usuario/";
+    public static final String KEY_API_POST_REGISTER_LIKE_MEDIA = "registrar-like/";
+
+    public static final String KEY_API_GET_USER_LIKE_MEDIA = "registrar-like/{id}/{userId}";
 }
