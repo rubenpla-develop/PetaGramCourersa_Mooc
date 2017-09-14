@@ -99,7 +99,6 @@ public class BaseMediaPresenter extends BasePresenter implements IBaseMediaPrese
         userResponseCall.enqueue(new Callback<TokenResponse>() {
             @Override
             public void onResponse(Call<TokenResponse> call, Response<TokenResponse> response) {
-               TokenResponse finalResponse = response.body();
                 getView().showSnackBarSuccesMessage("Notification sent to user");
             }
 
