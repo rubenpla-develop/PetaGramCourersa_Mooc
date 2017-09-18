@@ -77,7 +77,7 @@ public class MainActivityPresenter extends BasePresenter implements IMainActivit
         Log.i(TAG, "registerUser() method called!");
 
         final RetrofitController retrofitController =
-                new RetrofitController(ConstantesRestApi.INSTA_ROOT_URL);
+                new RetrofitController(ConstantesRestApi.API_ROOT_URL);
 
         RetrofitPetagramApi retrofitPetagramApi = retrofitController
                 .setDeserializer(RegisterUserDeserializer.class.getName(),

@@ -18,6 +18,8 @@ import retrofit2.http.Path;
 
 public interface RetrofitPetagramApi {
 
+    // <<<<<<<---------- INSTAGRAM Endpoints ---------->>>>>>>
+
     @GET(ConstantesRestApi.URL_GET_RECENT_MEDIA_USER)
     Call<PetModelResponse> getRecentPetMedia();
 
@@ -40,7 +42,7 @@ public interface RetrofitPetagramApi {
     Call<PetModelResponse> setUnlikeMedia(@Path ("mediaId") String mediaId);*/
 
 
-    // HEROKU API ---> FIREBASE DB
+    // <<<<<<<---------- HEROKU API ---> FIREBASE DB ---------->>>>>>>
 
     @POST(ConstantesRestApi.KEY_API_POST_REGISTER_USER)
     @FormUrlEncoded
@@ -56,4 +58,7 @@ public interface RetrofitPetagramApi {
     @GET(ConstantesRestApi.KEY_API_GET_USER_LIKE_MEDIA)
     Call<TokenResponse> sendNotificationToCreator(@Path("id") String id,
                                                   @Path("userId") String userId);
+
+    @GET(ConstantesRestApi.KEY_API_GET_REGISTER_USER)
+    Call<UserRegisterModelResponse> getRegisteredUser(@Path("id") String id);
 }
