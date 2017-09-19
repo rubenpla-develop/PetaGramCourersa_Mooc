@@ -12,8 +12,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.rubenpla.develop.petagramcoursera.adapter.PageAdapter;
+import com.rubenpla.develop.petagramcoursera.mvp.model.ProfileInfo;
 import com.rubenpla.develop.petagramcoursera.mvp.presenter.MainActivityPresenter;
 import com.rubenpla.develop.petagramcoursera.mvp.view.MainActivityView;
+import com.rubenpla.develop.petagramcoursera.util.ParamKeys;
 import com.rubenpla.develop.petagramcoursera.view.ProfileFragment;
 import com.rubenpla.develop.petagramcoursera.view.RecyclerViewFragment;
 
@@ -56,30 +58,31 @@ public class MainActivity extends AppCompatActivity implements MainActivityView 
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_contact:
+
                 showSnackBarSuccesMessage("R.id.menu_contact");
                 break;
             case R.id.menu_about:
+
                 showSnackBarSuccesMessage("R.id.menu_about");
                 break;
-            case R.id.menu_account:
-                Bundle bundle = new Bundle();
-                bundle.putString("value1", "This is a string");
-
-                Intent intent = new Intent(this, RegisterUserActivity.class);
-
-                if (bundle != null) {
-                    intent.putExtras(bundle);
-                }
-
-                startActivity(intent);
-                break;
-            case R.id.menu_notifications :
+            case R.id.view_profile:
                 try {
                     presenter.getProfileInfo();
-                } catch (ClassNotFoundException|NoSuchMethodException|InvocationTargetException
-                        |InstantiationException| IllegalAccessException e) {
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                } catch (NoSuchMethodException e) {
+                    e.printStackTrace();
+                } catch (InvocationTargetException e) {
+                    e.printStackTrace();
+                } catch (InstantiationException e) {
+                    e.printStackTrace();
+                } catch (IllegalAccessException e) {
                     e.printStackTrace();
                 }
+                break;
+            case R.id.switch_user:
+                Intent intent = new Intent(this, RegisterUserActivity.class);
+                startActivity(intent);
             default:
                 break;
         }
@@ -115,8 +118,17 @@ public class MainActivity extends AppCompatActivity implements MainActivityView 
     }
 
     @Override
-    public void showUserProfile() {
+    public void showUserProfile(final ProfileInfo profileInfo) {
+        Bundle bundle = new Bundle();
+        bundle.putParcelable(ParamKeys.KEY_EXTRA_PROFILE_INFO, profileInfo);
 
+        Intent intent = new Intent(this, ProfileInfoActivity.class);
+
+        if (bundle != null) {
+            intent.putExtras(bundle);
+        }
+
+        startActivity(intent);
     }
 
     @Override

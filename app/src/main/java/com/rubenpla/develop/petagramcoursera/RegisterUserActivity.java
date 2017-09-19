@@ -1,24 +1,29 @@
 package com.rubenpla.develop.petagramcoursera;
 
-import android.content.res.Resources;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
-import com.rubenpla.develop.petagramcoursera.mvp.presenter.IRegisterUserActivityPresenter;
+import com.rubenpla.develop.petagramcoursera.mvp.model.ProfileInfo;
+import com.rubenpla.develop.petagramcoursera.mvp.presenter.RegisterUserActivityPresenter;
+import com.rubenpla.develop.petagramcoursera.mvp.view.IRegisterUserActivityView;
+
+import java.lang.reflect.InvocationTargetException;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
-public class RegisterUserActivity extends AppCompatActivity implements IRegisterUserActivityPresenter {
-    @BindView(R.id.btnAcceder)
-    Button btnSave;
-    @BindView(R.id.etCuenta)
-    TextInputEditText tietAccount;
-    private Resources res;
+public class RegisterUserActivity extends AppCompatActivity implements IRegisterUserActivityView {
+   
+    @BindView(R.id.btnAcceder) Button btnSave;
+    @BindView(R.id.etCuenta) TextInputEditText accountUserTxtField;
 
+    private RegisterUserActivityPresenter presenter;
+    private ProfileInfo profileInfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,21 +31,39 @@ public class RegisterUserActivity extends AppCompatActivity implements IRegister
         setContentView(R.layout.activity_configurar_cuenta);
 
         ButterKnife.bind(this);
+    }
 
+    @OnClick(R.id.btnAcceder)
+    void registeruser(View v) {
+        presenter.setUserAccount(accountUserTxtField.getText().toString());
+    }
 
-        res = getResources();
+    @Override
+    public void showSnackBarSuccesMessage(String succesMessage) {
+        Snackbar.make(findViewById(android.R.id.content), succesMessage, Snackbar.LENGTH_LONG).show();
+    }
 
-        btnSave.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                setUserAccount();
-            }
-        });
+    @Override
+    public void showSnackBarErrorMessage(String errorMessage) {
+        Snackbar.make(findViewById(android.R.id.content), errorMessage, Snackbar.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void switchToNewUserAccount(String userId) {
+        //Presenter : take user profile from instagram api
 
     }
 
     @Override
-    public void setUserAccount() {
-        //TODO register user
+    public void registerUser() throws ClassNotFoundException, NoSuchMethodException,
+            InstantiationException, IllegalAccessException, InvocationTargetException {
+
+        presenter.registerUser();
+
+    }
+
+    @Override
+    public void finishAndReturn() {
+        this.finish();
     }
 }
