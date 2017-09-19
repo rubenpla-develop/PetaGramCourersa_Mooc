@@ -55,6 +55,8 @@ dependencies {
     //https://git.heroku.com/guarded-coast-64549.git
     compile 'com.google.firebase:firebase-messaging:10.2.6'
     compile 'com.google.firebase:firebase-core:10.2.6'
+
+    compile 'de.hdodenhof:circleimageview:2.1.0'
 }
 
 apply plugin: 'com.google.gms.google-services'
