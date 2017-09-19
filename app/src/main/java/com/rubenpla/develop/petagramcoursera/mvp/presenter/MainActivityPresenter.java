@@ -1,19 +1,15 @@
 package com.rubenpla.develop.petagramcoursera.mvp.presenter;
 
-import android.content.Context;
 import android.util.Log;
 
-import com.google.firebase.iid.FirebaseInstanceId;
-import com.rubenpla.develop.petagramcoursera.R;
 import com.rubenpla.develop.petagramcoursera.api.RetrofitController;
 import com.rubenpla.develop.petagramcoursera.api.constants.ConstantesRestApi;
 import com.rubenpla.develop.petagramcoursera.api.deserializer.ProfileInfoDeserializer;
-import com.rubenpla.develop.petagramcoursera.api.deserializer.RegisterUserDeserializer;
 import com.rubenpla.develop.petagramcoursera.api.endpoints.RetrofitPetagramApi;
+import com.rubenpla.develop.petagramcoursera.mvp.model.ProfileInfo;
 import com.rubenpla.develop.petagramcoursera.mvp.model.ProfileInfoModelResponse;
-import com.rubenpla.develop.petagramcoursera.mvp.model.UserRegister;
-import com.rubenpla.develop.petagramcoursera.mvp.model.UserRegisterModelResponse;
 import com.rubenpla.develop.petagramcoursera.mvp.presenter.basepresenter.BasePresenter;
+import com.rubenpla.develop.petagramcoursera.mvp.view.MainActivityView;
 import com.rubenpla.develop.petagramcoursera.mvp.view.baseview.IBaseView;
 
 import java.lang.reflect.InvocationTargetException;
@@ -48,10 +44,16 @@ public class MainActivityPresenter extends BasePresenter implements IMainActivit
             public void onResponse(Call<ProfileInfoModelResponse> call,
                                    Response<ProfileInfoModelResponse> response) {
 
-                String userId = response.body().getuser().getUserId();
-                String deviceId = FirebaseInstanceId.getInstance().getToken();
+                ProfileInfo profileInfo = new ProfileInfo();
 
-                userRegister = new UserRegister();
+                profileInfo.setUserId(response.body().getuser().getUserId());
+                profileInfo.setUserName(response.body().getuser().getUserName());
+                profileInfo.setUrlAvatar(response.body().getuser().getUrlAvatar());
+
+                ((MainActivityView) getView()).showUserProfile(profileInfo);
+                //String deviceId = FirebaseInstanceId.getInstance().getToken();
+
+                /*userRegister = new UserRegister();
                 userRegister.setUserId(userId);
                 userRegister.setDeviceId(deviceId);
 
@@ -60,7 +62,7 @@ public class MainActivityPresenter extends BasePresenter implements IMainActivit
                 } catch (ClassNotFoundException | NoSuchMethodException | InvocationTargetException
                         | InstantiationException | IllegalAccessException e) {
                     e.printStackTrace();
-                }
+                }*/
             }
 
             @Override
@@ -70,35 +72,5 @@ public class MainActivityPresenter extends BasePresenter implements IMainActivit
         });
     }
 
-    @Override
-    public void registerUser() throws ClassNotFoundException, NoSuchMethodException,
-            InvocationTargetException, InstantiationException, IllegalAccessException {
 
-        Log.i(TAG, "registerUser() method called!");
-
-        final RetrofitController retrofitController =
-                new RetrofitController(ConstantesRestApi.API_ROOT_URL);
-
-        RetrofitPetagramApi retrofitPetagramApi = retrofitController
-                .setDeserializer(RegisterUserDeserializer.class.getName(),
-                        UserRegisterModelResponse.class.getName());
-
-        Call<UserRegisterModelResponse> registerUser = retrofitPetagramApi
-                .setUserRegister(userRegister.getUserId(), userRegister.getDeviceId());
-
-        registerUser.enqueue(new Callback<UserRegisterModelResponse>() {
-            @Override
-            public void onResponse(Call<UserRegisterModelResponse> call,
-                                   Response<UserRegisterModelResponse> response) {
-                getView().showSnackBarSuccesMessage(((Context) getView())
-                        .getString(R.string.snackbar_register_user_success));
-            }
-
-            @Override
-            public void onFailure(Call<UserRegisterModelResponse> call, Throwable t) {
-                getView().showSnackBarErrorMessage(((Context) getView())
-                        .getString(R.string.snackbar_register_user_error));
-            }
-        });
-    }
 }

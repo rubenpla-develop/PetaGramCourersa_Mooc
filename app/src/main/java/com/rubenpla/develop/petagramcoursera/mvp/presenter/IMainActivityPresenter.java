@@ -8,6 +8,5 @@ public interface IMainActivityPresenter extends IBasePresenter {
     void getProfileInfo() throws ClassNotFoundException, NoSuchMethodException,
             InvocationTargetException, InstantiationException, IllegalAccessException;
 
-    void registerUser() throws ClassNotFoundException, NoSuchMethodException,
-            InvocationTargetException, InstantiationException, IllegalAccessException;
+
 }
