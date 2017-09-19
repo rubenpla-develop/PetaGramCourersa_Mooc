@@ -22,7 +22,7 @@
             android:id="@+id/tvConfigurarCuenta"
             android:layout_width="366dp"
             android:layout_height="wrap_content"
-            android:text="@string/menu_account_settings"
+            android:text="@string/menu_view_profile"
             android:layout_gravity="center_horizontal|top"
             android:textSize="@dimen/nombre_contacto"
             android:textColor="@color/cardview_dark_background"

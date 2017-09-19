@@ -20,7 +20,7 @@ android:padding="16dp">
     android:text="User name"
     android:layout_marginTop="32dp"
     android:textSize="20sp"
-    android:layout_below="@id/user_image"
+    android:layout_below="@id/userimage"
     android:layout_centerHorizontal="true"/>
 
 </RelativeLayout>

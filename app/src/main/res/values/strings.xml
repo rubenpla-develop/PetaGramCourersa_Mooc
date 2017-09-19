@@ -1,20 +1,14 @@
 <resources>
     <string name="app_name">PetagramCoursera</string>
-    <string name="nombre">Anahi Salgado</string>
-    <string name="telefono">55557777</string>
-    <string name="email">anahi@gmail.com</string>
-    <string name="pnombre">nombre</string>
-    <string name="ptelefono">telefono</string>
-    <string name="pemail">email</string>
-    <string name="plikes">0</string>
+    <string name="photo_likes">0</string>
     <string name="boton_guardar_contacto">Guardar</string>
 
 
     <!-- MENU BAR -->
     <string name="menu_about">About</string>
     <string name="menu_contact">Contact</string>
-    <string name="menu_account_settings">Account Settings</string>
-    <string name="menu_notifications">Get Notifications</string>
+    <string name="menu_view_profile">View Profile</string>
+    <string name="register_new_user">Register New User</string>
 
     <!-- SNACKBAR MESSAGES -->
     <string name="snackbar_register_user_success">User registered successfully.</string>

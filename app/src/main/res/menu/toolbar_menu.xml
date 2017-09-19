@@ -12,13 +12,13 @@
         android:title="@string/menu_about">
     </item>
     <item
-        android:id="@+id/menu_account"
+        android:id="@+id/view_profile"
         app:showAsAction="never"
-        android:title="@string/menu_account_settings">
+        android:title="@string/menu_view_profile">
     </item>
     <item
-        android:id="@+id/menu_notifications"
+        android:id="@+id/switch_user"
         app:showAsAction="never"
-        android:title="@string/menu_notifications">
+        android:title="@string/register_new_user">
     </item>
 </menu>
