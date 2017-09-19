@@ -25,6 +25,9 @@
 
         <activity android:name="com.rubenpla.develop.petagramcoursera.RegisterUserActivity"></activity>
 
+        <activity android:name="com.rubenpla.develop.petagramcoursera.ProfileInfoActivity"></activity>
+
+
         <service
             android:name=".service.NotificationService">
             <intent-filter>
