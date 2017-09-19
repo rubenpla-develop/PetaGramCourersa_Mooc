@@ -32,6 +32,9 @@ public interface RetrofitPetagramApi {
     @GET(ConstantesRestApi.URL_GET_RECENT_MEDIA_BY_USER_ID)
     Call<PetModelResponse> getUserById(@Path ("user") String id);
 
+    @GET(ConstantesRestApi.URL_SEARCH_USER)
+    Call<ProfileInfoModelResponse> searchUserByName(@Path ("userName") String userName);
+
 /*    @GET(ConstantesRestApi.URL_LIKE_PHOTO)
     Call<PetModelResponse> getLikes(@Path ("mediaId") String mediaId);*/
 

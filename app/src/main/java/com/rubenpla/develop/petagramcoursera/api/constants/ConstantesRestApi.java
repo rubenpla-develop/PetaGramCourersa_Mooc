@@ -6,9 +6,11 @@ public final class ConstantesRestApi {
     //https://api.instagram.com/v1/
     public static final String VERSION = "/v1/";
     public static final String INSTA_ROOT_URL = "https://api.instagram.com" + VERSION;
-    public static final String ACCESS_TOKEN = "5823926203.cf5e43d.3a0cced541a24d568c3cdf164fcb2e2f";
+    //public static final String ACCESS_TOKEN = "5823926203.cf5e43d.3a0cced541a24d568c3cdf164fcb2e2f";
     public static final String KEY_ACCESS_TOKEN = "?access_token=";
-
+    public static final String KEY_ACCESS_TOKEN_WITH_PARAM = "&access_token=";
+    //PEKERUB USER
+    public static final String ACCESS_TOKEN = "5758474049.ba45d32.e2931b46e52c49e2949a4c8005734526";
 
     //https://api.instagram.com/v1/users/self/media/recent/?access_token=ACCESS-TOKEN
     public static final String KEY_GET_RECENT_MEDIA_USER = "users/self/media/recent/";
@@ -41,10 +43,15 @@ public final class ConstantesRestApi {
     public static final String URL_LIKE_PHOTO = KEY_LIKE_PHOTO
             + KEY_ACCESS_TOKEN + ACCESS_TOKEN;
 
+    public static final String KEY_SEARCH_USER = "users/search?q={userName}";
+    public static final String URL_SEARCH_USER = KEY_SEARCH_USER + KEY_ACCESS_TOKEN_WITH_PARAM
+            + ACCESS_TOKEN;
+
     //FIREBASE/API STUFF
     public static final String API_ROOT_URL = "https://guarded-coast-64549.herokuapp.com/";
     public static final String KEY_API_POST_REGISTER_USER = "registrar-usuario/";
     public static final String KEY_API_POST_REGISTER_LIKE_MEDIA = "registrar-like/";
 
     public static final String KEY_API_GET_USER_LIKE_MEDIA = "registrar-like/{id}/{userId}";
+    public static final String KEY_API_GET_REGISTER_USER = "registrar-usuario/{id}";
 }
