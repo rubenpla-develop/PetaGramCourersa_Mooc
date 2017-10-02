@@ -19,8 +19,8 @@ import butterknife.OnClick;
 
 public class RegisterUserActivity extends PetagramActivity implements IRegisterUserActivityView {
    
-    @BindView(R.id.btnAcceder) Button btnSave;
-    @BindView(R.id.etCuenta) TextInputEditText accountUserTxtField;
+    @BindView(R.id.btn_save_user) Button btnSave;
+    @BindView(R.id.user_switch_edit_text) TextInputEditText accountUserTxtField;
 
     private RegisterUserActivityPresenter presenter;
     private ProfileInfo profileInfo;

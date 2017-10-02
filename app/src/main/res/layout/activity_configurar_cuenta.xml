@@ -35,14 +35,14 @@
             android:layout_gravity="center_horizontal|center_vertical">
 
             <android.support.design.widget.TextInputEditText
-                android:id="@+id/etCuenta"
+                android:id="@+id/user_switch_edit_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 
         </android.support.design.widget.TextInputLayout>
 
         <Button
-            android:id="@+id/btnAcceder"
+            android:id="@+id/btn_save_user"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal|bottom"

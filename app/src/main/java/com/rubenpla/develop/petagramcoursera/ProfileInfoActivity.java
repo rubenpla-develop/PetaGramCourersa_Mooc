@@ -16,8 +16,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ProfileInfoActivity extends PetagramActivity {
 
-    @BindView(R.id.profile_info_photo)
-    CircleImageView userPhoto;
+    @BindView(R.id.profile_info_photo) CircleImageView userPhoto;
     @BindView(R.id.profile_info_username) TextView username;
 
     private ProfileInfoActivityPresenter presenter;
@@ -50,6 +49,4 @@ public class ProfileInfoActivity extends PetagramActivity {
 
         username.setText(profileInfo.getUserName());
     }
-
-
 }
