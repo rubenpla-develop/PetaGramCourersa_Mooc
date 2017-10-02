@@ -6,7 +6,6 @@ import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -18,6 +17,7 @@ import com.rubenpla.develop.petagramcoursera.mvp.view.MainActivityView;
 import com.rubenpla.develop.petagramcoursera.util.ParamKeys;
 import com.rubenpla.develop.petagramcoursera.view.ProfileFragment;
 import com.rubenpla.develop.petagramcoursera.view.RecyclerViewFragment;
+import com.rubenpla.develop.petagramcoursera.view.activity.PetagramActivity;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
@@ -25,7 +25,7 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MainActivity extends AppCompatActivity implements MainActivityView {
+public class MainActivity extends PetagramActivity implements MainActivityView {
 
     @BindView(R.id.toolbar) Toolbar toolbar;
     @BindView(R.id.tabLayout) TabLayout tabLayout;
@@ -68,15 +68,8 @@ public class MainActivity extends AppCompatActivity implements MainActivityView 
             case R.id.view_profile:
                 try {
                     presenter.getProfileInfo();
-                } catch (ClassNotFoundException e) {
-                    e.printStackTrace();
-                } catch (NoSuchMethodException e) {
-                    e.printStackTrace();
-                } catch (InvocationTargetException e) {
-                    e.printStackTrace();
-                } catch (InstantiationException e) {
-                    e.printStackTrace();
-                } catch (IllegalAccessException e) {
+                } catch (ClassNotFoundException | NoSuchMethodException | InvocationTargetException
+                        | InstantiationException | IllegalAccessException e) {
                     e.printStackTrace();
                 }
                 break;

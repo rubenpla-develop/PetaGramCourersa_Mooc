@@ -3,13 +3,13 @@ package com.rubenpla.develop.petagramcoursera;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputEditText;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
 import com.rubenpla.develop.petagramcoursera.mvp.model.ProfileInfo;
 import com.rubenpla.develop.petagramcoursera.mvp.presenter.RegisterUserActivityPresenter;
 import com.rubenpla.develop.petagramcoursera.mvp.view.IRegisterUserActivityView;
+import com.rubenpla.develop.petagramcoursera.view.activity.PetagramActivity;
 
 import java.lang.reflect.InvocationTargetException;
 
@@ -17,7 +17,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class RegisterUserActivity extends AppCompatActivity implements IRegisterUserActivityView {
+public class RegisterUserActivity extends PetagramActivity implements IRegisterUserActivityView {
    
     @BindView(R.id.btnAcceder) Button btnSave;
     @BindView(R.id.etCuenta) TextInputEditText accountUserTxtField;

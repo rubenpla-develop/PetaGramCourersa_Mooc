@@ -2,19 +2,19 @@ package com.rubenpla.develop.petagramcoursera;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
 import com.rubenpla.develop.petagramcoursera.mvp.model.ProfileInfo;
 import com.rubenpla.develop.petagramcoursera.mvp.presenter.ProfileInfoActivityPresenter;
 import com.rubenpla.develop.petagramcoursera.util.ParamKeys;
+import com.rubenpla.develop.petagramcoursera.view.activity.PetagramActivity;
 import com.squareup.picasso.Picasso;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class ProfileInfoActivity extends AppCompatActivity {
+public class ProfileInfoActivity extends PetagramActivity {
 
     @BindView(R.id.profile_info_photo)
     CircleImageView userPhoto;
