@@ -6,6 +6,7 @@ import com.rubenpla.develop.petagramcoursera.mvp.model.NullModelResponse;
 import com.rubenpla.develop.petagramcoursera.mvp.model.PetModelResponse;
 import com.rubenpla.develop.petagramcoursera.mvp.model.ProfileInfoModelResponse;
 import com.rubenpla.develop.petagramcoursera.mvp.model.RegisterLikeModelResponse;
+import com.rubenpla.develop.petagramcoursera.mvp.model.SearchByUserModelResponse;
 import com.rubenpla.develop.petagramcoursera.mvp.model.TokenResponse;
 import com.rubenpla.develop.petagramcoursera.mvp.model.UserRegisterModelResponse;
 
@@ -15,6 +16,7 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface RetrofitPetagramApi {
 
@@ -33,7 +35,8 @@ public interface RetrofitPetagramApi {
     Call<PetModelResponse> getUserById(@Path ("user") String id);
 
     @GET(ConstantesRestApi.URL_SEARCH_USER)
-    Call<ProfileInfoModelResponse> searchUserByName(@Path ("userName") String userName);
+    Call<SearchByUserModelResponse> searchUserByName(@Query("q") String userName,
+                                                     @Query("access_token") String token );
 
 /*    @GET(ConstantesRestApi.URL_LIKE_PHOTO)
     Call<PetModelResponse> getLikes(@Path ("mediaId") String mediaId);*/

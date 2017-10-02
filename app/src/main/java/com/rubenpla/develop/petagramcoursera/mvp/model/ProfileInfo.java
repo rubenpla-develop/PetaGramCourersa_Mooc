@@ -2,6 +2,7 @@ package com.rubenpla.develop.petagramcoursera.mvp.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
 
 public class ProfileInfo implements Parcelable {
     private String userName;
@@ -16,6 +17,14 @@ public class ProfileInfo implements Parcelable {
 
     public ProfileInfo() {
 
+    }
+
+    public ProfileInfo(@NonNull SearchByUserModel user) {
+        if (user == null) return;
+
+        this.userId = user.getUserId();
+        this.userName = user.getUserName();
+        this.urlAvatar = user.getUrlAvatar();
     }
 
     @Override
@@ -64,5 +73,14 @@ public class ProfileInfo implements Parcelable {
 
     public void setUserId(String userId) {
         this.userId = userId;
+    }
+
+    @Override
+    public String toString() {
+        return "ProfileInfo{" +
+                "userName='" + userName + '\'' +
+                ", userId='" + userId + '\'' +
+                ", urlAvatar='" + urlAvatar + '\'' +
+                '}';
     }
 }

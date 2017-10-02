@@ -43,9 +43,9 @@ public final class ConstantesRestApi {
     public static final String URL_LIKE_PHOTO = KEY_LIKE_PHOTO
             + KEY_ACCESS_TOKEN + ACCESS_TOKEN;
 
-    public static final String KEY_SEARCH_USER = "users/search?q={userName}";
-    public static final String URL_SEARCH_USER = KEY_SEARCH_USER + KEY_ACCESS_TOKEN_WITH_PARAM
-            + ACCESS_TOKEN;
+    public static final String KEY_SEARCH_USER = "users/search"; //?q={userName}
+    public static final String URL_SEARCH_USER = KEY_SEARCH_USER;// + KEY_ACCESS_TOKEN_WITH_PARAM
+           // + ACCESS_TOKEN;
 
     //FIREBASE/API STUFF
     public static final String API_ROOT_URL = "https://guarded-coast-64549.herokuapp.com/";
