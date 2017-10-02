@@ -7,8 +7,10 @@ import android.view.View;
 import android.widget.Button;
 
 import com.rubenpla.develop.petagramcoursera.mvp.model.ProfileInfo;
+import com.rubenpla.develop.petagramcoursera.mvp.model.SearchByUserModel;
 import com.rubenpla.develop.petagramcoursera.mvp.presenter.RegisterUserActivityPresenter;
 import com.rubenpla.develop.petagramcoursera.mvp.view.IRegisterUserActivityView;
+import com.rubenpla.develop.petagramcoursera.util.preferences.PreferencesKeys;
 import com.rubenpla.develop.petagramcoursera.view.activity.PetagramActivity;
 
 import java.lang.reflect.InvocationTargetException;
@@ -31,11 +33,18 @@ public class RegisterUserActivity extends PetagramActivity implements IRegisterU
         setContentView(R.layout.activity_configurar_cuenta);
 
         ButterKnife.bind(this);
+
+        presenter = new RegisterUserActivityPresenter(this);
     }
 
-    @OnClick(R.id.btnAcceder)
-    void registeruser(View v) {
-        presenter.setUserAccount(accountUserTxtField.getText().toString());
+    @OnClick(R.id.btn_save_user)
+    void onClickRegisterUser(View view)  {
+        try {
+            presenter.setUserAccount(accountUserTxtField.getText().toString());
+        } catch (ClassNotFoundException | NoSuchMethodException | InstantiationException |
+                InvocationTargetException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -49,9 +58,14 @@ public class RegisterUserActivity extends PetagramActivity implements IRegisterU
     }
 
     @Override
-    public void switchToNewUserAccount(String userId) {
-        //Presenter : take user profile from instagram api
-
+    public void switchToNewUserAccount(SearchByUserModel user) throws ClassNotFoundException,
+            NoSuchMethodException, InvocationTargetException, InstantiationException,
+            IllegalAccessException {
+        ProfileInfo profileInfo = new ProfileInfo(user);
+        getPreferencesAgent().saveProfile(PreferencesKeys.KEY_POST_CURRENT_USER, profileInfo);
+        presenter.registerUser(profileInfo);
+        //Launch intent to start activity MainActivity and refresh content with new user
+        // registered
     }
 
     @Override

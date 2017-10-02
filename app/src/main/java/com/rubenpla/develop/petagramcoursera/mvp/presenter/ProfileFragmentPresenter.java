@@ -53,6 +53,8 @@ public class ProfileFragmentPresenter extends BaseMediaPresenter implements IPro
                 }
 
                 ((IProfileFragmentView)view).showProfilePhoto(userInfoResponse.getuser().getUrlAvatar());
+                ((IProfileFragmentView) view).saveUserToPreferences(response.body().getuser());
+
             }
 
             @Override
@@ -81,6 +83,7 @@ public class ProfileFragmentPresenter extends BaseMediaPresenter implements IPro
 
             @Override
             public void onFailure(Call<PetModelResponse> call, Throwable t) {
+
             }
         });
     }

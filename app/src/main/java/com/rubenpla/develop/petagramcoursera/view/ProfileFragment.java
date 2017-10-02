@@ -14,8 +14,11 @@ import com.bartoszlipinski.recyclerviewheader2.RecyclerViewHeader;
 import com.rubenpla.develop.petagramcoursera.R;
 import com.rubenpla.develop.petagramcoursera.adapter.GridAdapter;
 import com.rubenpla.develop.petagramcoursera.mvp.model.PetModel;
+import com.rubenpla.develop.petagramcoursera.mvp.model.ProfileInfo;
 import com.rubenpla.develop.petagramcoursera.mvp.presenter.ProfileFragmentPresenter;
 import com.rubenpla.develop.petagramcoursera.mvp.view.IProfileFragmentView;
+import com.rubenpla.develop.petagramcoursera.util.preferences.PreferencesKeys;
+import com.rubenpla.develop.petagramcoursera.util.preferences.SharedPreferencesAgent;
 import com.rubenpla.develop.petagramcoursera.view.custom.RoundedImageView;
 import com.squareup.picasso.Picasso;
 
@@ -80,6 +83,15 @@ public class ProfileFragment extends Fragment implements IProfileFragmentView {
     public void showGridList(ArrayList<PetModel> list) {
         adapter = new GridAdapter(getContext(), list, profileFragmentPresenter);
         petRecyclerView.setAdapter(adapter);
+    }
+
+    @Override
+    public void saveUserToPreferences(ProfileInfo profileInfo) {
+        SharedPreferencesAgent preferencesAgent = new SharedPreferencesAgent(getContext());
+        if (!preferencesAgent.isProfileSaved()) {
+            preferencesAgent.saveProfile(PreferencesKeys.PREFERENCES_USER_REGISTERED_INFO,
+                    profileInfo);
+        }
     }
 
     @Override

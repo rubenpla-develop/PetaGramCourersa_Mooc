@@ -71,6 +71,4 @@ public class MainActivityPresenter extends BasePresenter implements IMainActivit
             }
         });
     }
-
-
 }

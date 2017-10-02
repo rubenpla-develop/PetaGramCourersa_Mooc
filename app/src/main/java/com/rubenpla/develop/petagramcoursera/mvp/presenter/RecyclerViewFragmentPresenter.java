@@ -1,5 +1,7 @@
 package com.rubenpla.develop.petagramcoursera.mvp.presenter;
 
+import android.util.Log;
+
 import com.rubenpla.develop.petagramcoursera.api.RetrofitController;
 import com.rubenpla.develop.petagramcoursera.api.constants.ConstantesRestApi;
 import com.rubenpla.develop.petagramcoursera.api.deserializer.FollowedByDeserializer;
@@ -20,6 +22,8 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class RecyclerViewFragmentPresenter extends BaseMediaPresenter implements IRecyclerViewFragmentPresenter {
+
+    private final String TAG = RecyclerViewFragmentPresenter.class.getSimpleName();
 
     private RetrofitController controller;
     private RetrofitPetagramApi apiEndpoints;
@@ -82,6 +86,14 @@ public class RecyclerViewFragmentPresenter extends BaseMediaPresenter implements
 
             @Override
             public void onResponse(Call<PetModelResponse> call, Response<PetModelResponse> response) {
+                if (response.raw().cacheResponse() != null) {
+                    Log.i(TAG, "<<<<<<------- CACHE RESPONSE ------->>>>>> \nResponse is cached in Device" );
+                }
+
+                if (response.raw().networkResponse() != null) {
+                    Log.i(TAG, "<<<<<<------- SERVER RESPONSE ------->>>>>>\nResponse is from network server" );
+                }
+
                 ArrayList<PetModel> petsList;
                 PetModelResponse petResponse = response.body();
                 petsList = petResponse.getPetModels();

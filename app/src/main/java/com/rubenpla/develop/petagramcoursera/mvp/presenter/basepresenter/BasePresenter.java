@@ -8,6 +8,7 @@ import com.rubenpla.develop.petagramcoursera.api.RetrofitController;
 import com.rubenpla.develop.petagramcoursera.api.constants.ConstantesRestApi;
 import com.rubenpla.develop.petagramcoursera.api.deserializer.RegisterUserDeserializer;
 import com.rubenpla.develop.petagramcoursera.api.endpoints.RetrofitPetagramApi;
+import com.rubenpla.develop.petagramcoursera.mvp.model.ProfileInfo;
 import com.rubenpla.develop.petagramcoursera.mvp.model.UserRegister;
 import com.rubenpla.develop.petagramcoursera.mvp.model.UserRegisterModelResponse;
 import com.rubenpla.develop.petagramcoursera.mvp.view.baseview.IBaseView;
@@ -32,6 +33,12 @@ public class BasePresenter implements IBasePresenter {
     @Override
     public IBaseView getView() {
         return view;
+    }
+
+    @Override
+    public void registerUser(ProfileInfo user) throws ClassNotFoundException, NoSuchMethodException, InstantiationException, IllegalAccessException, InvocationTargetException {
+        userRegister = new UserRegister(user);
+        registerUser();
     }
 
     @Override
